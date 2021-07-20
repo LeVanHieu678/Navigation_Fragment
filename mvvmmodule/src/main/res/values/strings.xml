@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">mvvm module</string>
+    <string name="showToast">showMessage</string>
+    <string name="name">Name</string>
+    <string name="likes">Likes</string>
+    <string name="last_name">Last Name</string>
+    <string name="like">Like</string>
+</resources>

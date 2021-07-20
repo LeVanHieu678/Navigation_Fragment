@@ -1,0 +1,3 @@
+rootProject.name = "NavigateDemo"
+include ':app', ':mvvmmodule'
+include ':bindingwithrecycleview'

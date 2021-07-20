@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.vti.mvvmmodule.SimpleViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="15dp"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/tvFirstName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtFirstName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@{vm.firstName}"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvFirstName"
+            tools:text="FirstName" />
+
+        <TextView
+            android:id="@+id/tvLastName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/last_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtFirstName" />
+
+        <TextView
+            android:id="@+id/txtLastName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@{vm.lastName}"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvLastName"
+            tools:text="LastName" />
+
+
+        <TextView
+            android:id="@+id/tvLikes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/likes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_popularity" />
+
+        <TextView
+            android:id="@+id/tvCountLikes"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{vm.likes.toString()}"
+            app:layout_constraintEnd_toEndOf="@id/tvLikes"
+            app:layout_constraintTop_toBottomOf="@id/tvLikes"
+            tools:text="0"
+            android:layout_marginRight="10dp" />
+
+        <Button
+            android:id="@+id/btnLikes"
+            android:onClick="@{()-> vm.onLikes()}"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/like"
+            app:layout_constraintTop_toBottomOf="@id/tvCountLikes"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="5dp" />
+        <ProgressBar
+            app:progressTint="@{vm.popularity}"
+            app:layout_constraintEnd_toEndOf="@id/btnLikes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            app:layout_constraintTop_toBottomOf="@id/btnLikes"
+            app:layout_constraintStart_toStartOf="@id/btnLikes"
+            android:max="@{100}"
+            app:progressBarScaled="@{Integer.valueOf(vm.likes)}"
+            hideIfZero="@{Integer.valueOf(vm.likes)}"
+            />
+
+        <ImageView
+            app:popularityIcon="@{vm.popularity}"
+            android:id="@+id/img_popularity"
+            app:layout_constraintEnd_toEndOf="@id/tvLikes"
+            app:layout_constraintStart_toStartOf="@id/tvLikes"
+            android:padding="15dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tvLikes"
+            tools:src="@drawable/ic_person_black_96dp"/>
+        <Button
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SignIn"
+            android:onClick="@{()->vm.signInWithGoogle()}"
+            app:layout_constraintTop_toBottomOf="@id/txtLastName"
+            app:layout_constraintStart_toStartOf="parent"/>
+        <Button
+            android:layout_marginTop="90dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign Out"
+            android:onClick="@{()->vm.signOut()}"
+            app:layout_constraintTop_toBottomOf="@id/txtLastName"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--    <LinearLayout-->
+
+<!--        android:gravity="center"-->
+<!--        android:visibility="visible"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:orientation="vertical"-->
+<!--        android:layout_height="match_parent">-->
+<!--        <Button-->
+<!--            android:onClick="@{() -> vm.signInWithGoogle()}"-->
+<!--            android:id="@+id/btnSignIn"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:text="SignIn"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"/>-->
+<!--        <Button-->
+<!--            android:onClick="@{() -> vm.signOut}"-->
+<!--            android:id="@+id/btnSignOut"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:text="SignOut"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"/>-->
+
+
+<!--    </LinearLayout>-->
+
+
+</layout>
